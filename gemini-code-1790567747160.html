@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiệm Trà Sữa & Mì Cay Ultimate Game 2026 - Random Events Edition</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif; }
+        body { background: #0f172a; color: #f8fafc; padding: 20px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 1100px; background: #1e293b; border-radius: 16px; padding: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.8); border: 1px solid #334155; position: relative; }
+        
+        .shop-banner {
+            width: 100%; height: 200px; border-radius: 12px;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.4)), url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80') center/cover;
+            display: flex; align-items: center; justify-content: space-between; padding: 0 30px;
+            border: 1px solid #475569; margin-bottom: 25px; box-shadow: inset 0 0 50px rgba(0,0,0,0.6);
+        }
+        .shop-banner h1 { font-size: 26px; color: #f8fafc; font-weight: 800; letter-spacing: 1px; }
+        .shop-banner p { color: #38bdf8; font-size: 14px; font-weight: 600; margin-top: 5px; }
+
+        .audio-control-btn {
+            background: rgba(15, 23, 42, 0.8); border: 2px solid #38bdf8; color: #38bdf8;
+            padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; backdrop-filter: blur(5px); transition: all 0.2s;
+        }
+        .audio-control-btn:hover { background: #38bdf8; color: #0f172a; }
+
+        .header-status { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; background: #0f172a; padding: 18px; border-radius: 12px; margin-bottom: 25px; border: 1px solid #334155; }
+        .status-box { text-align: center; }
+        .status-box label { font-size: 11px; color: #94a3b8; text-transform: uppercase; }
+        .status-box .val { font-size: 18px; font-weight: 700; color: #38bdf8; margin-top: 4px; }
+
+        .grid-layout { display: grid; grid-template-columns: 1.8fr 1.2fr; gap: 20px; }
+        @media (max-width: 850px) { .grid-layout { grid-template-columns: 1fr; } }
+
+        .card { background: #0f172a; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #334155; }
+        .card h2 { color: #f8fafc; font-size: 17px; font-weight: 700; margin-bottom: 15px; border-bottom: 1px solid #1e293b; padding-bottom: 8px; }
+
+        .customer-area {
+            background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 12px; padding: 20px; text-align: center;
+            border: 1px solid #3b82f6; margin-bottom: 20px; position: relative;
+        }
+        .cust-badge {
+            position: absolute; top: 15px; right: 15px; background: #3b82f6; color: #fff;
+            padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase;
+        }
+        .customer-avatar { width: 85px; height: 85px; border-radius: 50%; border: 3px solid #38bdf8; margin: 10px auto; object-fit: cover; }
+        .speech-bubble { background: #334155; color: #f8fafc; padding: 12px 18px; border-radius: 20px; display: inline-block; font-size: 13px; border: 1px solid #475569; max-width: 85%; }
+
+        .dirt-alert { background: #451a03; border: 1px solid #f97316; color: #fdba74; padding: 10px 15px; border-radius: 8px; font-size: 12px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
+
+        .price-setting-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        .price-item { background: #1e293b; padding: 10px; border-radius: 8px; border: 1px solid #334155; font-size: 12px; }
+        .price-item input { width: 60px; padding: 4px 6px; border-radius: 4px; border: 1px solid #475569; background: #0f172a; color: #fff; font-weight: 700; text-align: center; }
+
+        .player-card { background: #1e293b; border-radius: 8px; padding: 10px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; border: 1px solid #334155; }
+        .player-info { display: flex; align-items: center; gap: 10px; }
+        .player-avatar { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; }
+
+        .upgrade-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .upgrade-item { background: #1e293b; padding: 12px; border-radius: 8px; border: 1px solid #334155; font-size: 12px; }
+
+        .review-item { background: #1e293b; border-radius: 8px; padding: 12px; margin-bottom: 10px; border: 1px solid #334155; }
+        .review-header { display: flex; justify-content: space-between; font-weight: 600; color: #f8fafc; margin-bottom: 5px; font-size: 13px; }
+        .review-comment { font-size: 13px; color: #cbd5e1; margin-bottom: 8px; }
+        .reply-box { margin-top: 8px; padding-left: 10px; border-left: 2px solid #38bdf8; font-size: 12px; }
+        .reply-input-group { display: flex; gap: 6px; margin-top: 6px; }
+        .reply-input-group input { flex: 1; padding: 8px 12px; border-radius: 6px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 12px; outline: none; }
+
+        .btn-group { display: flex; flex-wrap: wrap; gap: 8px; }
+        button { background: #2563eb; color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
+        button:hover { background: #3b82f6; transform: translateY(-1px); }
+        .btn-buy { background: #059669; } .btn-buy:hover { background: #10b981; }
+        .btn-action { background: #d97706; width: 100%; font-size: 15px; padding: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-action:hover { background: #f59e0b; }
+        .btn-danger { background: #dc2626; } .btn-danger:hover { background: #ef4444; }
+
+        .log-box { background: #020617; border-radius: 8px; padding: 12px; height: 220px; overflow-y: auto; font-size: 12px; color: #94a3b8; border: 1px solid #1e293b; font-family: monospace; }
+        .log-entry { margin-bottom: 6px; } .log-good { color: #34d399; } .log-bad { color: #f87171; } .log-angry { color: #fb7185; font-weight: bold; }
+        .inventory-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="shop-banner">
+        <div>
+            <h1>BOUTIQUE TEA & SPICY NOODLES</h1>
+            <p>Mô Phỏng Quản Lý Quán Trà Sữa (Sự Cố Thuế & Vé Số May Rủi)</p>
+        </div>
+        <button class="audio-control-btn" onclick="toggleBGM()">🎵 <span id="bgm-text">Nhạc Nền: Tắt</span></button>
+    </div>
+
+    <div class="header-status">
+        <div class="status-box"><label>Ngày</label><div class="val" id="day">1</div></div>
+        <div class="status-box"><label>Quỹ Quán</label><div class="val" id="money">1,000k</div></div>
+        <div class="status-box"><label>Ví Cá Nhân</label><div class="val" id="personalMoney">200k</div></div>
+        <div class="status-box"><label>Danh Tiếng</label><div class="val" id="reputation">5 ⭐</div></div>
+        <div class="status-box"><label>Sàn Quán</label><div class="val" id="cleanliness" style="color:#10b981;">Sạch ✨</div></div>
+        <div class="status-box"><label>Ở Chung Với</label><div class="val" id="roommate" style="font-size:13px; color:#f43f5e;">Chưa có</div></div>
+    </div>
+
+    <div class="grid-layout">
+        <div>
+            <div class="customer-area">
+                <div class="cust-badge" id="cust-type">Khách Thường</div>
+                <div class="speech-bubble" id="speech">"Cho em 1 ly Trà Sữa đường đen đặc biệt nhé!"</div>
+                <div><img id="customer-img" class="customer-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Khách"></div>
+                <h3 id="customer-name" style="color: #f8fafc; font-size: 15px; font-weight: 600;">Linh Nguyễn</h3>
+            </div>
+
+            <div id="dirt-container" style="display: none;">
+                <div class="dirt-alert">
+                    <span>⚠️ <b>Sàn quán bị dơ:</b> Khách cáu giận đã hất đổ trà sữa ra sàn!</span>
+                    <button onclick="cleanFloorByHand()" style="background:#ea580c; font-size:11px;">Tự dọn dẹp</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🚀 Hoạt Động Kinh Doanh</h2>
+                <button class="btn-action" onclick="playClickSound(); startDay()">MỞ CỬA BÁN HÀNG NGÀY MỚI</button>
+            </div>
+
+            <!-- TÍNH NĂNG MỚI: VÉ SỐ MAY RỦI & TÀI CHÍNH BẤT NGỜ -->
+            <div class="card">
+                <h2>🎟️ Vé Số Cào May Rủi & Thuế Kinh Doanh</h2>
+                <p style="font-size: 11px; color: #94a3b8; margin-bottom: 10px;">Thử vận may cào vé số từ ví cá nhân hoặc chuẩn bị đóng tiền thuế quán định kỳ.</p>
+                <div class="btn-group">
+                    <button class="btn-buy" onclick="playCoinSound(); playLottery()">🎟️ Cào Vé Số (20k / Ví)</button>
+                    <button onclick="playClickSound(); payTaxEarly()">🏛️ Đóng Thuế Trước (150k / Quỹ)</button>
+                    <button class="btn-danger" onclick="resetGameData()">🔄 Chơi Mới Từ Đầu</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>💲 Điều Chỉnh Giá Menu (Tự Do)</h2>
+                <div class="price-setting-grid">
+                    <div class="price-item"><b>🧋 Trà Sữa</b> (Đề xuất 35k):<br>Giá: <input type="number" id="price-tra" value="35" min="10" max="80" onchange="updatePrices()"> k</div>
+                    <div class="price-item"><b>🍜 Mì Cay Cấp 1</b> (Đề xuất 45k):<br>Giá: <input type="number" id="price-my1" value="45" min="20" max="100" onchange="updatePrices()"> k</div>
+                    <div class="price-item"><b>🍜 Mì Cay Cấp 3</b> (Đề xuất 55k):<br>Giá: <input type="number" id="price-my3" value="55" min="20" max="120" onchange="updatePrices()"> k</div>
+                    <div class="price-item"><b>🔥 Mì Cay Cấp 7</b> (Đề xuất 75k):<br>Giá: <input type="number" id="price-my7" value="75" min="30" max="160" onchange="updatePrices()"> k</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🏗️ Nâng Cấp Cơ Sở Vật Chất Quán</h2>
+                <div class="upgrade-grid">
+                    <div class="upgrade-item">
+                        <b>🪑 Bàn Ghế Sofa Cao Cấp</b><br>
+                        Hiện tại: <b id="lvl-tables" style="color:#38bdf8;">Cấp 1</b><br>
+                        <button onclick="upgradeFacility('tables', 300)" class="btn-buy" style="margin-top:6px;">Nâng cấp (300k)</button>
+                    </div>
+                    <div class="upgrade-item">
+                        <b>❄️ Điều Hòa & Đèn Décor</b><br>
+                        Hiện tại: <b id="lvl-decor" style="color:#38bdf8;">Cấp 1</b><br>
+                        <button onclick="upgradeFacility('decor', 500)" class="btn-buy" style="margin-top:6px;">Nâng cấp (500k)</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>🌐 Kết Bạn Với Người Chơi Khác & Rủ Ở Chung</h2>
+                <div id="online-players-list"></div>
+            </div>
+
+            <div class="card">
+                <h2>⭐ Đánh Giá & Trả Lời Khách Hàng</h2>
+                <div id="reviews-container"></div>
+            </div>
+
+            <div class="card">
+                <h2>🚘 Tài Sản Cá Nhân & Bất Động Sản</h2>
+                <p style="font-size: 12px; margin-bottom: 10px;">Nhà ở: <b id="house">Phòng Trọ 15m2</b> | Xe: <b id="car">Wave Alpha</b></p>
+                <div class="btn-group">
+                    <button onclick="playClickSound(); withdrawMoney()">Rút 200k Quỹ vào Ví</button>
+                    <button onclick="playCoinSound(); buyCar('SH 150i', 800)">Mua SH 150i (800k)</button>
+                    <button onclick="playCoinSound(); buyCar('Porsche 911 GT3', 5000)">Mua Porsche 911 (5,000k)</button>
+                    <button onclick="playCoinSound(); buyHouse('Căn Hộ Chung Cư VIP', 3000)">Mua Căn Hộ VIP (3,000k)</button>
+                    <button onclick="playCoinSound(); buyHouse('Biệt Thự Penthouse', 10000)">Mua Penthouse (10,000k)</button>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="card">
+                <h2>👥 Tuyển Dụng Nhân Sự Quán</h2>
+                <div class="btn-group">
+                    <button onclick="playClickSound(); hireStaff('pucvu', 150)">Tuyển Phục Vụ (150k)</button>
+                    <button onclick="playClickSound(); hireStaff('baove', 200)">Tuyển Bảo Vệ (200k)</button>
+                    <button onclick="playClickSound(); hireStaff('laocong', 250)">Tuyển Cô Lao Công (250k)</button>
+                    <button onclick="playClickSound(); unlockApp('ShopeeFood', 300, 10)">Mở ShopeeFood (300k)</button>
+                </div>
+                <div style="margin-top:10px; font-size:12px; color:#94a3b8;">
+                    Đội ngũ: <b id="staff-summary" style="color:#38bdf8;">0 Phục Vụ | 0 Bảo Vệ | 0 Lao Công</b>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📦 Tồn Kho Nguyên Liệu</h2>
+                <div class="inventory-list">
+                    <div>🧋 Trà: <b id="stock-tra" style="color:#38bdf8;">20</b></div>
+                    <div>🥛 Sữa: <b id="stock-sua" style="color:#38bdf8;">20</b></div>
+                    <div>⚫ Trân Châu: <b id="stock-tc" style="color:#38bdf8;">20</b></div>
+                    <div>🍜 Mì: <b id="stock-my" style="color:#38bdf8;">20</b></div>
+                    <div>🥣 Nước Dùng: <b id="stock-nd" style="color:#38bdf8;">20</b></div>
+                    <div>🌶️ Topping: <b id="stock-tp" style="color:#38bdf8;">20</b></div>
+                </div>
+                <div class="btn-group" style="margin-top:10px;">
+                    <button class="btn-buy" onclick="playCoinSound(); buyStock('trasua')">Nhập Trà Sữa (200k)</button>
+                    <button class="btn-buy" onclick="playCoinSound(); buyStock('mycay')">Nhập Mì Cay (350k)</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📜 Nhật Ký Hoạt Động</h2>
+                <div class="log-box" id="log">
+                    <div class="log-entry">Hệ thống đã sẵn sàng với tính năng Vé Số & Sự Cố Thuế Bất Ngờ!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let audioCtx = null, bgmOscillator = null, isBGMPlaying = false;
+    function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+    
+    function speakText(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'vi-VN'; window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    function playClickSound() {
+        initAudio(); const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = 'sine'; osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime); gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
+        osc.connect(gain); gain.connect(audioCtx.destination); osc.start(); osc.stop(audioCtx.currentTime + 0.08);
+    }
+
+    function playCoinSound() {
+        initAudio(); const now = audioCtx.currentTime, osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+        osc.type = 'triangle'; osc.frequency.setValueAtTime(987.77, now); osc.frequency.setValueAtTime(1318.51, now + 0.08);
+        gain.gain.setValueAtTime(0.2, now); gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+        osc.connect(gain); gain.connect(audioCtx.destination); osc.start(now); osc.stop(now + 0.35);
+    }
+
+    function toggleBGM() {
+        initAudio();
+        if (isBGMPlaying) { if (bgmOscillator) clearInterval(bgmOscillator); isBGMPlaying = false; document.getElementById('bgm-text').innerText = "Nhạc Nền: Tắt"; }
+        else {
+            isBGMPlaying = true; document.getElementById('bgm-text').innerText = "Nhạc Nền: Bật 🎶";
+            const notes = [261.63, 329.63, 392.00, 523.25, 440.00]; let noteIdx = 0;
+            bgmOscillator = setInterval(() => {
+                const now = audioCtx.currentTime, osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+                osc.type = 'sine'; osc.frequency.setValueAtTime(notes[noteIdx % notes.length], now);
+                gain.gain.setValueAtTime(0.03, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+                osc.connect(gain); gain.connect(audioCtx.destination); osc.start(now); osc.stop(now + 1.2); noteIdx++;
+            }, 1500);
+        }
+    }
+
+    // --- SINH NHÂN VẬT & TÊN NGẪU NHIÊN ---
+    const ho = ["Nguyễn", "Trần", "Lê", "Phạm", "Hoàng", "Huỳnh", "Vũ", "Võ", "Đặng", "Bùi", "Đỗ"];
+    const dem = ["Văn", "Thị", "Hữu", "Đức", "Minh", "Quang", "Phương", "Khánh", "Tuấn", "Thành"];
+    const ten = ["Anh", "Bình", "Châu", "Dương", "Đạt", "Giang", "Hà", "Hải", "Hùng", "Hương", "Khoa", "Linh", "Mai", "Nam", "Phong", "Phúc", "Quỳnh", "Sơn", "Trang", "Tú", "Uyên", "Yến"];
+
+    function generateCharacterName() {
+        return `${ho[Math.floor(Math.random()*ho.length)]} ${dem[Math.floor(Math.random()*dem.length)]} ${ten[Math.floor(Math.random()*ten.length)]}`;
+    }
+
+    let characterDatabase = [];
+    const avatarsPool = [
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+        "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=300&q=80",
+        "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=300&q=80"
+    ];
+
+    for (let i = 0; i < 500; i++) {
+        characterDatabase.push({
+            id: i + 1,
+            name: generateCharacterName(),
+            img: avatarsPool[i % avatarsPool.length]
+        });
+    }
+
+    const orderQuotes = [
+        "Cho em 1 ly Trà Sữa đường đen đặc biệt béo ngậy!",
+        "Lấy tô Mì Cay Cấp 7 nhiều ớt tươi gấp đôi giúp em!",
+        "Anh ơi, 1 Trà Sữa Trân Châu 50% đường ít đá nhé.",
+        "Trưa nay nóng quá, cho 1 tô mì cay cấp 3 ăn cho đã!",
+        "Chị ơi cho 1 ly Trà Sữa Ô Long Kem Trứng Nướng!"
+    ];
+
+    const angryCurseQuotes = [
+        "Làm ăn kiểu gì thế hả? Chờ gần nửa tiếng rồi đấy!",
+        "Chặt chém đắt thế này thì dẹp quán đi cho rồi!",
+        "Thái độ phục vụ kém quá! Hất đổ luôn ly trà sữa này!",
+        "Quá thất vọng! Trà sữa gì mà giá chát như nước biển!"
+    ];
+
+    const goodReviews = [
+        "Trà sữa béo thơm, giá cả siêu hợp lý luôn!",
+        "Mì cay cấp 3 đậm đà, tô đầy đặn nhiều bò!",
+        "Quán trang trí đẹp, điều hòa mát rượi 10/10!"
+    ];
+
+    const badReviews = [
+        "Giá quá chát so với mặt bằng chung, không đáng tiền!",
+        "Quán làm lâu, thái độ không thân thiện chút nào.",
+        "Trà sữa ngọt gắt, giá đắt dơ sàn nhà nữa chứ!"
+    ];
+
+    // GAME STATE & LOCALSTORAGE (LƯU GAME)
+    const defaultGame = {
+        day: 1, money: 1000, personalMoney: 200, reputation: 5,
+        isDirty: false,
+        prices: { tra: 35, my1: 45, my3: 55, my7: 75 },
+        facilities: { tables: 1, decor: 1 },
+        staff: { pucvu: 0, baove: 0, laocong: 0 },
+        apps: { ShopeeFood: false },
+        house: "Phòng Trọ 15m2", car: "Wave Alpha", roommate: null,
+        stock: { tra: 20, sua: 20, tc: 20, my: 20, nd: 20, tp: 20 },
+        reviews: [],
+        onlinePlayers: [
+            { name: characterDatabase[10].name, isFriend: false, img: characterDatabase[10].img },
+            { name: characterDatabase[25].name, isFriend: false, img: characterDatabase[25].img },
+            { name: characterDatabase[99].name, isFriend: false, img: characterDatabase[99].img }
+        ]
+    };
+
+    let game = JSON.parse(localStorage.getItem('boba_game_save_2026')) || JSON.parse(JSON.stringify(defaultGame));
+
+    function saveGame() {
+        localStorage.setItem('boba_game_save_2026', JSON.stringify(game));
+    }
+
+    function resetGameData() {
+        if (confirm("Bạn có chắc chắn muốn xóa toàn bộ tiến trình để chơi lại từ đầu?")) {
+            localStorage.removeItem('boba_game_save_2026');
+            game = JSON.parse(JSON.stringify(defaultGame));
+            saveGame();
+            updateUI();
+            log("Đã khởi tạo lại game từ ngày 1!", 'good');
+        }
+    }
+
+    const customerTypes = {
+        student: { name: "Học Sinh / Sinh Viên 🎒", badgeColor: "#10b981", priceSensitivity: 1.3, angryChance: 0.2 },
+        office: { name: "Dân Văn Phòng 💼", badgeColor: "#0284c7", priceSensitivity: 1.2, angryChance: 0.2 },
+        picky: { name: "Khách Khó Tính 😤", badgeColor: "#e11d48", priceSensitivity: 1.6, angryChance: 0.6 },
+        rich: { name: "Phú Bà ĐẠI GIA 💎", badgeColor: "#eab308", priceSensitivity: 0.5, angryChance: 0.1 },
+        celeb: { name: "Người Nổi Tiếng ⭐", badgeColor: "#a855f7", priceSensitivity: 0.8, angryChance: 0.3 }
+    };
+
+    function updatePrices() {
+        game.prices.tra = parseInt(document.getElementById('price-tra').value) || 35;
+        game.prices.my1 = parseInt(document.getElementById('price-my1').value) || 45;
+        game.prices.my3 = parseInt(document.getElementById('price-my3').value) || 55;
+        game.prices.my7 = parseInt(document.getElementById('price-my7').value) || 75;
+        saveGame();
+    }
+
+    function log(msg, type = '') {
+        const logBox = document.getElementById('log');
+        const entry = document.createElement('div');
+        entry.className = 'log-entry ' + (type === 'good' ? 'log-good' : type === 'bad' ? 'log-bad' : type === 'angry' ? 'log-angry' : '');
+        entry.innerText = `[Ngày ${game.day}] ${msg}`;
+        logBox.appendChild(entry); logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function updateUI() {
+        document.getElementById('day').innerText = game.day;
+        document.getElementById('money').innerText = game.money.toLocaleString() + 'k';
+        document.getElementById('personalMoney').innerText = game.personalMoney.toLocaleString() + 'k';
+        document.getElementById('reputation').innerText = game.reputation + ' ⭐';
+        document.getElementById('house').innerText = game.house;
+        document.getElementById('car').innerText = game.car;
+        document.getElementById('roommate').innerText = game.roommate ? game.roommate : "Chưa có";
+        document.getElementById('staff-summary').innerText = `${game.staff.pucvu} Phục Vụ | ${game.staff.baove} Bảo Vệ | ${game.staff.laocong} Lao Công`;
+
+        document.getElementById('lvl-tables').innerText = `Cấp ${game.facilities.tables}`;
+        document.getElementById('lvl-decor').innerText = `Cấp ${game.facilities.decor}`;
+
+        document.getElementById('cleanliness').innerText = game.isDirty ? "Bị Bẩn 💩" : "Sạch ✨";
+        document.getElementById('cleanliness').style.color = game.isDirty ? "#f97316" : "#10b981";
+        document.getElementById('dirt-container').style.display = game.isDirty ? "block" : "none";
+
+        document.getElementById('stock-tra').innerText = game.stock.tra;
+        document.getElementById('stock-sua').innerText = game.stock.sua;
+        document.getElementById('stock-tc').innerText = game.stock.tc;
+        document.getElementById('stock-my').innerText = game.stock.my;
+        document.getElementById('stock-nd').innerText = game.stock.nd;
+        document.getElementById('stock-tp').innerText = game.stock.tp;
+
+        renderOnlinePlayers();
+        renderReviews();
+    }
+
+    // TÍNH NĂNG MỚI: CÀO VÉ SỐ MAY RỦI
+    function playLottery() {
+        if (game.personalMoney < 20) {
+            log("Ví cá nhân không đủ 20k để mua vé số cào!", 'bad');
+            return;
+        }
+        game.personalMoney -= 20;
+        const rand = Math.random();
+        if (rand < 0.05) {
+            const reward = 1000;
+            game.personalMoney += reward;
+            log(`🎉 NỔ HŨ LỚN! Bạn cào trúng giải ĐẶC BIỆT vé số: +${reward}k vào ví cá nhân!`, 'good');
+            speakText("Chúc mừng bạn đã cào trúng giải đặc biệt!");
+        } else if (rand < 0.25) {
+            const reward = 100;
+            game.personalMoney += reward;
+            log(`✨ Bạn cào trúng Giải Ba vé số: +${reward}k!`, 'good');
+        } else if (rand < 0.50) {
+            const reward = 30;
+            game.personalMoney += reward;
+            log(`🎟️ Bạn cào trúng Giải Khuyến Khích: +${reward}k.`, 'good');
+        } else {
+            log("❌ Vé số không trúng thưởng. Chúc bạn may mắn lần sau!", 'bad');
+        }
+        saveGame();
+        updateUI();
+    }
+
+    // TÍNH NĂNG MỚI: ĐÓNG THUẾ TRƯỚC
+    function payTaxEarly() {
+        if (game.money >= 150) {
+            game.money -= 150;
+            game.reputation += 3;
+            log("🏛️ Đã chủ động nộp 150k tiền Thuế Kinh Doanh & Vệ Sinh! Danh tiếng +3 ⭐", 'good');
+        } else {
+            log("Quỹ quán không đủ 150k để đóng thuế!", 'bad');
+        }
+        saveGame();
+        updateUI();
+    }
+
+    function renderOnlinePlayers() {
+        const container = document.getElementById('online-players-list');
+        container.innerHTML = game.onlinePlayers.map((p, idx) => `
+            <div class="player-card">
+                <div class="player-info">
+                    <img class="player-avatar" src="${p.img}">
+                    <div><b>${p.name}</b></div>
+                </div>
+                <div>
+                    ${!p.isFriend ? `<button onclick="addOnlineFriend(${idx})">Gửi lời mời kết bạn</button>` : `
+                        ${game.roommate === p.name ? `<span style="color:#10b981; font-weight:bold;">Đang ở chung 🏠</span>` : `<button onclick="inviteToLiveInHouse(${idx})" class="btn-buy">Mời dọn về ở cùng</button>`}
+                    `}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderReviews() {
+        const container = document.getElementById('reviews-container');
+        if (game.reviews.length === 0) {
+            container.innerHTML = `<p style="font-size: 13px; color: #64748b;">Chưa có đánh giá nào.</p>`;
+            return;
+        }
+
+        container.innerHTML = game.reviews.map((rev, idx) => `
+            <div class="review-item">
+                <div class="review-header">
+                    <span>${rev.name} (${rev.type})</span>
+                    <span style="color: #f59e0b;">${'⭐'.repeat(rev.stars)}</span>
+                </div>
+                <div class="review-comment">"${rev.comment}"</div>
+                ${rev.ownerReply ? `
+                    <div class="reply-box">
+                        <div style="color: #38bdf8; font-weight: 600;">Chủ quán phản hồi:</div>
+                        <div>${rev.ownerReply}</div>${rev.custReply ? `<div style="color: #f43f5e; font-weight: 600; margin-top: 4px;">${rev.name}: "${rev.custReply}"</div>` : ''}
+                    </div>
+                ` : `
+                    <div class="reply-input-group">
+                        <input type="text" id="reply-input-${idx}" placeholder="Nhập câu trả lời lịch sự...">
+                        <button onclick="playClickSound(); sendReply(${idx})">Gửi</button>
+                    </div>
+                `}
+            </div>
+        `).join('');
+    }
+
+    function sendReply(idx) {
+        const input = document.getElementById(`reply-input-${idx}`);
+        const text = input.value.trim(); if (!text) return;
+
+        const rev = game.reviews[idx];
+        rev.ownerReply = text;
+        const lowerText = text.toLowerCase();
+
+        if (lowerText.includes("cảm ơn") || lowerText.includes("xin lỗi")) {
+            rev.custReply = "Cảm ơn phản hồi chuyên nghiệp của quán!";
+            game.reputation += 1;
+            log(`Trả lời phản hồi lịch sự! Danh tiếng +1 ⭐`, 'good');
+        } else {
+            rev.custReply = "Thái độ kém quá!";
+            game.reputation = Math.max(0, game.reputation - 1);
+        }
+        saveGame();
+        updateUI();
+    }
+
+    function addOnlineFriend(idx) {
+        game.onlinePlayers[idx].isFriend = true;
+        log(`Đã kết bạn thành công với ${game.onlinePlayers[idx].name}!`, 'good');
+        saveGame();
+        updateUI();
+    }
+
+    function inviteToLiveInHouse(idx) {
+        if (game.house === "Phòng Trọ 15m2") {
+            log("Phòng trọ 15m2 quá chật! Hãy mua Căn Hộ VIP hoặc Penthouse để mời ở chung.", 'bad');
+            speakText("Phòng trọ chật lắm, mua nhà to rồi tớ về ở chung nhé!");
+            return;
+        }
+        game.roommate = game.onlinePlayers[idx].name;
+        game.reputation += 10;
+        log(`${game.onlinePlayers[idx].name} đã chấp nhận dọn về ở cùng bạn trong ${game.house}! Danh tiếng +10 ⭐`, 'good');
+        speakText("Okie! Tớ dọn đồ đạc sang ở chung với bạn ngay đây!");
+        saveGame();
+        updateUI();
+    }
+
+    function cleanFloorByHand() {
+        game.isDirty = false;
+        log("Bạn đã tự tay lau sạch bãi trà sữa dơ trên sàn quán!", 'good');
+        saveGame();
+        updateUI();
+    }
+
+    function upgradeFacility(type, cost) {
+        if (game.money >= cost) {
+            game.money -= cost;
+            game.facilities[type] += 1;
+            game.reputation += 5;
+            log(`Nâng cấp cơ sở vật chất thành công! Danh tiếng +5 ⭐`, 'good');
+        } else { log("Quỹ quán không đủ tiền nâng cấp!", 'bad'); }
+        saveGame();
+        updateUI();
+    }
+
+    function buyStock(type) {
+        if (type === 'trasua' && game.money >= 200) {
+            game.money -= 200; game.stock.tra += 20; game.stock.sua += 20; game.stock.tc += 20;
+            log("Nhập thành công Gói Trà Sữa!", 'good');
+        } else if (type === 'mycay' && game.money >= 350) {
+            game.money -= 350; game.stock.my += 20; game.stock.nd += 20; game.stock.tp += 20;
+            log("Nhập thành công Gói Mì Cay!", 'good');
+        } else { log("Quỹ quán không đủ!", 'bad'); }
+        saveGame();
+        updateUI();
+    }
+
+    function withdrawMoney() {
+        if (game.money >= 200) { game.money -= 200; game.personalMoney += 200; log("Rút 200k vào ví cá nhân.", 'good'); }
+        else { log("Quỹ không đủ 200k!", 'bad'); }
+        saveGame();
+        updateUI();
+    }
+
+    function buyCar(carName, cost) {
+        if (game.personalMoney >= cost) {
+            game.personalMoney -= cost; game.car = carName; game.reputation += 5;
+            log(`Sở hữu thành công ${carName}! Danh tiếng +5 ⭐`, 'good');
+        } else { log("Ví cá nhân không đủ ngân sách!", 'bad'); }
+        saveGame();
+        updateUI();
+    }
+
+    function buyHouse(houseName, cost) {
+        if (game.personalMoney >= cost) {
+            game.personalMoney -= cost; game.house = houseName; game.reputation += 15;
+            log(`Đã mua và chuyển về ${houseName}!`, 'good');
+        } else { log("Ví cá nhân không đủ tiền mua nhà!", 'bad'); }
+        saveGame();
+        updateUI();
+    }
+
+    function hireStaff(role, cost) {
+        if (game.money >= cost) {
+            game.money -= cost; game.staff[role] += 1;
+            log(`Tuyển thành công 1 nhân sự!`, 'good');
+        } else { log("Quỹ quán không đủ!", 'bad'); }
+        saveGame();
+        updateUI();
+    }
+
+    function unlockApp(appName, cost, reqRep) {
+        if (game.apps[appName]) { log("Đã mở ShopeeFood rồi!", 'bad'); }
+        else if (game.reputation < reqRep) { log(`Cần đạt ${reqRep} ⭐ danh tiếng!`, 'bad'); }
+        else if (game.money >= cost) {
+            game.money -= cost; game.apps[appName] = true;
+            log(`Liên kết thành công ShopeeFood!`, 'good');
+        } else { log("Quỹ quán không đủ!", 'bad'); }
+        saveGame();
+        updateUI();
+    }
+
+    function startDay() {
+        updatePrices();
+
+        // 1. TỰ ĐỘNG LAU SÀN BỞI LAO CÔNG
+        if (game.isDirty) {
+            if (game.staff.laocong > 0) {
+                game.isDirty = false;
+                log("Cô Lao Công đã tự động dọn sạch sàn quán!", 'good');
+            } else {
+                game.reputation = Math.max(0, game.reputation - 2);
+                log("Sàn quán bị bẩn chưa dọn! Trừ 2 ⭐ danh tiếng.", 'bad');
+            }
+        }
+
+        // 2. SỰ CỐ THUẾ ĐỘT XUẤT (Mỗi 5 ngày hoặc 20% ngẫu nhiên)
+        if (game.day % 5 === 0 || Math.random() < 0.20) {
+            const taxAmount = 100 + (game.facilities.tables * 20);
+            if (game.money >= taxAmount) {
+                game.money -= taxAmount;
+                log(`🏛️ Cơ quan thuế ghé kiểm tra định kỳ: Đã nộp -${taxAmount}k tiền thuế kinh doanh.`, 'bad');
+            } else {
+                game.reputation = Math.max(0, game.reputation - 3);
+                log(`🏛️ Nợ tiền thuế do quỹ quán không đủ! Trừ 3 ⭐ danh tiếng.`, 'angry');
+                speakText("Chú ý, quán đang nợ tiền thuế kinh doanh!");
+            }
+        }
+
+        // 3. SỰ CỐ TÀI CHÍNH BẤT NGỜ (CẢ TỐT VÀ XẤU)
+        const eventRoll = Math.random();
+        if (eventRoll < 0.15) {
+            // Nổ cầu chì / Hỏng tủ lạnh
+            const repairCost = 80;
+            game.money = Math.max(0, game.money - repairCost);
+            log(`⚡ Tủ lạnh hỏng bất ngờ! Tốn -${repairCost}k tiền sửa chữa.`, 'bad');
+        } else if (eventRoll > 0.85) {
+            // Thu bạc / Khách để quên ví / Trợ cấp
+            const bonusMoney = 150;
+            game.money += bonusMoney;
+            log(`💰 Khách quen tip đậm & trợ cấp địa phương: Thu về thêm +${bonusMoney}k!`, 'good');
+        }
+
+        // 4. PHỤC VỤ KHÁCH HÀNG & DOANH THU
+        const randomChar = characterDatabase[Math.floor(Math.random() * characterDatabase.length)];
+        const randKeys = Object.keys(customerTypes);
+        const currentCustType = customerTypes[randKeys[Math.floor(Math.random() * randKeys.length)]];
+
+        document.getElementById('cust-type').innerText = currentCustType.name;
+        document.getElementById('cust-type').style.background = currentCustType.badgeColor;
+        document.getElementById('customer-name').innerText = randomChar.name;
+        document.getElementById('customer-img').src = randomChar.img;
+
+        let numCustomers = 4 + (game.facilities.tables * 2) + (game.facilities.decor * 2) + (game.staff.pucvu * 2);
+        if (game.apps.ShopeeFood) numCustomers += 4;
+
+        let basePrice = 35;
+        let setPrice = game.prices.tra;
+        const isNoodle = Math.random() > 0.5;
+        if (isNoodle) { setPrice = game.prices.my3; basePrice = 55; }
+
+        const randomOrderQuote = orderQuotes[Math.floor(Math.random() * orderQuotes.length)];
+        document.getElementById('speech').innerText = `"${randomOrderQuote}"`;
+
+        if (setPrice > basePrice * currentCustType.priceSensitivity) {
+            game.isDirty = true;
+            const curse = angryCurseQuotes[Math.floor(Math.random() * angryCurseQuotes.length)];
+            log(`🤬 ${randomChar.name} (${currentCustType.name}) cáu giận hất trà sữa: "${curse}"`, 'angry');
+            speakText(curse);
+            game.reputation = Math.max(0, game.reputation - 1);
+
+            const randomBadRev = badReviews[Math.floor(Math.random() * badReviews.length)];
+            game.reviews.unshift({ name: randomChar.name, type: currentCustType.name, stars: 1, comment: randomBadRev, ownerReply: null, custReply: null });
+        } else {
+            let revenue = setPrice * numCustomers;
+            let totalSalary = (game.staff.pucvu * 30) + (game.staff.baove * 40) + (game.staff.laocong * 35);
+            game.money += (revenue - totalSalary);
+            log(`Phục vụ thành công ${numCustomers} khách. Thu về: +${revenue}k (Lương NV: -${totalSalary}k)`, 'good');
+
+            const randomGoodRev = goodReviews[Math.floor(Math.random() * goodReviews.length)];
+            game.reviews.unshift({ name: randomChar.name, type: currentCustType.name, stars: 5, comment: randomGoodRev, ownerReply: null, custReply: null });
+        }
+
+        if (game.reviews.length > 5) game.reviews.pop();
+
+        if (Math.random() < currentCustType.angryChance) {
+            if (game.staff.baove > 0) {
+                log("Bảo vệ quán tóm gọn đối tượng ăn quỵt!", 'good');
+            } else {
+                game.money = Math.max(0, game.money - 50);
+                log("Kẻ trộm lẻn vào móc hòm tiền! Mất 50k.", 'bad');
+                speakText("Tới số rồi, bị móc mất tiền rồi!");
+            }
+        }
+
+        game.day++;
+        saveGame();
+        updateUI();
+    }
+
+    updateUI();
+</script>
+</body>
+</html>
